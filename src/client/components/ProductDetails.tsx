@@ -27,20 +27,33 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
                 <Image />
             </div>
             <div className="col-12 col-sm-7 col-lg-6">
-                <h1 className={bem("Name")}>{product.name}</h1>
-                <p className={bem("Description")}>{product.description}</p>
-                <p className={bem("Price", ['fs-3'])}>${product.price}</p>
+                <h1 className={bem('Name')}>{product.name}</h1>
+                <p className={bem('Description')}>{product.description}</p>
+                <p className={bem('Price', ['fs-3'])}>${product.price}</p>
                 <p>
-                    <button className={bem("AddToCart", ['btn', 'btn-primary', btnSizeClass])} onClick={onClick}>Add to Cart</button>
+                    <button
+                        className={bem('AddToCart', [
+                            'btn',
+                            'btn-primary',
+                            btnSizeClass,
+                        ])}
+                        onClick={onClick}
+                    >
+                        Add to Cart
+                    </button>
                     <CartBadge id={product.id} />
                 </p>
                 <dl>
                     <dt>Color</dt>
-                    <dd className={bem("Color", ['text-capitalize'])}>{product.color}</dd>
+                    <dd className={bem('Color', ['text-capitalize'])}>
+                        {product.color}
+                    </dd>
                     <dt>Material</dt>
-                    <dd className={bem("Material", ['text-capitalize'])}>{product.material}</dd>
+                    <dd className={bem('Material', ['text-capitalize'])}>
+                        {product.material}
+                    </dd>
                 </dl>
             </div>
         </div>
     );
-}
+};

@@ -2,9 +2,9 @@ import { commerce } from 'faker';
 import { Order, Product, ProductShortInfo } from '../common/types';
 
 const generateProducts = () => {
-    const products: Product[] = []
+    const products: Product[] = [];
 
-    for(let id = 0; id < 27; id++) {
+    for (let id = 0; id < 27; id++) {
         products.push({
             id,
             name: `${commerce.productAdjective()} ${commerce.product()}`,
@@ -16,7 +16,7 @@ const generateProducts = () => {
     }
 
     return products;
-}
+};
 
 function getShortInfo({ id, name, price }: Product): ProductShortInfo {
     return { id, name, price };
@@ -32,14 +32,16 @@ export class ExampleStore {
         const products = this.products.map(getShortInfo);
 
         if (bugId === 1) {
-            products.forEach(p => { p.name = undefined });
+            products.forEach((p) => {
+                p.name = undefined;
+            });
         }
 
         return products;
     }
 
     getProductById(id: number): Product | undefined {
-        const [product] = this.products.filter(p => p.id === id);
+        const [product] = this.products.filter((p) => p.id === id);
         return product;
     }
 
