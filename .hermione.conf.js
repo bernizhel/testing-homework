@@ -13,11 +13,6 @@ module.exports = {
         },
     },
     plugins: {
-        'hermione-headless-chrome': {
-            enabled: true,
-            browserId: 'chromium-browser',
-            version: '114',
-        },
         'html-reporter/hermione': {
             enabled: true,
         },
