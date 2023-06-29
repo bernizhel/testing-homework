@@ -4,7 +4,7 @@ async function beforeEach(browser) {
     const puppeteer = await browser.getPuppeteer();
     const [page] = await puppeteer.pages();
     await page.goto(SUT_URI);
-    await page.waitForSelector({ timeout: TIMEOUT });
+    await page.waitForSelector('.Application', { timeout: TIMEOUT });
     return page;
 }
 
