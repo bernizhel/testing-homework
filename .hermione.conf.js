@@ -1,7 +1,7 @@
 module.exports = {
     sets: {
         desktop: {
-            files: 'test/hermione/desktop',
+            files: 'test/hermione/desktop/**.hermione.js',
         },
     },
     browsers: {
