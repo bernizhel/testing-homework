@@ -1,4 +1,4 @@
-const { SUT_URI } = require('./constant');
+const { SUT_URI } = require('../constant');
 
 describe('Верстка должна адаптироваться под ширину экрана', async function () {
     it('Страница товаров', async ({ browser }) => {
