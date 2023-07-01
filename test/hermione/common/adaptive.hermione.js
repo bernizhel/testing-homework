@@ -2,32 +2,32 @@ const PageObject = require('../PageObject.js');
 
 describe('Верстка должна адаптироваться под ширину экрана', async () => {
     it('Главная страница', async ({ browser }) => {
-        const page = new PageObject(browser, hermione.ctx);
-        await page.goTo('/');
-        await page.takeScreenshot();
+        const pageObject = new PageObject(browser, hermione.ctx);
+        await pageObject.goTo('/');
+        await pageObject.takeScreenshot();
     });
 
     it('Каталог', async ({ browser }) => {
-        const page = new PageObject(browser, hermione.ctx);
-        await page.goTo('/catalog');
-        await page.takeScreenshot();
+        const pageObject = new PageObject(browser, hermione.ctx);
+        await pageObject.goTo('/catalog');
+        await pageObject.takeScreenshot();
     });
 
     it('Доставка', async ({ browser }) => {
-        const page = new PageObject(browser, hermione.ctx);
-        await page.goTo('/delivery');
-        await page.takeScreenshot();
+        const pageObject = new PageObject(browser, hermione.ctx);
+        await pageObject.goTo('/delivery');
+        await pageObject.takeScreenshot();
     });
 
     it('Контакты', async ({ browser }) => {
-        const page = new PageObject(browser, hermione.ctx);
-        await page.goTo('/contacts');
-        await page.takeScreenshot();
+        const pageObject = new PageObject(browser, hermione.ctx);
+        await pageObject.goTo('/contacts');
+        await pageObject.takeScreenshot();
     });
 
     it('Корзина', async ({ browser }) => {
-        const page = new PageObject(browser, hermione.ctx);
-        await page.goTo('/cart');
-        await page.takeScreenshot();
+        const pageObject = new PageObject(browser, hermione.ctx);
+        await pageObject.goTo('/cart');
+        await pageObject.takeScreenshot();
     });
 });

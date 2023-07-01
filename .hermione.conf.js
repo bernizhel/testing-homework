@@ -8,22 +8,12 @@ const RESOLUTIONS = [
         isMobile: false,
     },
     {
-        width: 1280,
-        height: 720,
-        isMobile: false,
-    },
-    {
         width: 1024,
         height: 1080,
         isMobile: false,
     },
     {
-        width: 720,
-        height: 480,
-        isMobile: false,
-    },
-    {
-        width: 480,
+        width: 575,
         height: 720,
         isMobile: true,
     },
