@@ -9,7 +9,7 @@ const RESOLUTIONS = [
     },
     {
         width: 1024,
-        height: 1080,
+        height: 720,
         isMobile: false,
     },
     {

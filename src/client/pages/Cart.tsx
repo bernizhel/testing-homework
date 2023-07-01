@@ -39,8 +39,12 @@ export const Cart: React.FC = () => {
                     </th>
                     <td className={bem('Name')}>{item.name}</td>
                     <td className={bem('Price')}>${item.price}</td>
-                    <td className={bem('Count')}>{item.count}</td>
-                    <td className={bem('Total')}>${item.count * item.price}</td>
+                    <td data-testid="item-count" className={bem('Count')}>
+                        {item.count}
+                    </td>
+                    <td data-testid="item-total-price" className={bem('Total')}>
+                        ${item.count * item.price}
+                    </td>
                 </tr>
             );
         });
@@ -51,7 +55,10 @@ export const Cart: React.FC = () => {
         );
 
         content = (
-            <table className={bem('Table', ['table'])}>
+            <table
+                data-testid="cart-content"
+                className={bem('Table', ['table'])}
+            >
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -65,7 +72,12 @@ export const Cart: React.FC = () => {
                 <tfoot>
                     <tr>
                         <td colSpan={4}>Order price:</td>
-                        <td className={bem('OrderPrice')}>${total}</td>
+                        <td
+                            data-testid="total-price-all"
+                            className={bem('OrderPrice')}
+                        >
+                            ${total}
+                        </td>
                     </tr>
                 </tfoot>
             </table>
@@ -74,7 +86,10 @@ export const Cart: React.FC = () => {
         content = (
             <>
                 Cart is empty. Please select products in the{' '}
-                <Link to="/catalog">catalog</Link>.
+                <Link data-testid="link-from-cart-to-catalog" to="/catalog">
+                    catalog
+                </Link>
+                .
             </>
         );
     }
@@ -83,6 +98,7 @@ export const Cart: React.FC = () => {
         <div className="row mb-4">
             <div className="col-6">
                 <button
+                    data-testid="button-clear-cart"
                     className={bem('Clear', ['btn', 'btn-outline-secondary'])}
                     onClick={onClear}
                 >
@@ -129,10 +145,10 @@ export const Cart: React.FC = () => {
         ) : null;
 
     return (
-        <div className={bem()}>
+        <div data-testid="cart-container" className={bem()}>
             <Helmet title="Shopping cart" />
             <div className="row mb-4">
-                <div className="col">
+                <div data-testid="content-container" className="col">
                     <h1>Shopping cart</h1>
                     {orderInfo}
                     {content}

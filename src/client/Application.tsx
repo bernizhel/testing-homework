@@ -42,10 +42,15 @@ export const Application: FC = () => {
             <Helmet titleTemplate="%s — Example store" />
             <nav className="navbar navbar-expand-sm navbar-light bg-light">
                 <div className="container">
-                    <Link className={bem('Brand', ['navbar-brand'])} to="/">
+                    <Link
+                        data-testid="main-page-link"
+                        className={bem('Brand', ['navbar-brand'])}
+                        to="/"
+                    >
                         Example store
                     </Link>
                     <button
+                        data-testid="burger-button"
                         className={bem('Toggler', ['navbar-toggler'])}
                         aria-label="Toggle navigation"
                         onClick={toggle}
@@ -55,6 +60,7 @@ export const Application: FC = () => {
                     <div className={bem('Menu', [navbarClass])}>
                         <div className="navbar-nav">
                             <NavLink
+                                data-testid="catalog-link"
                                 className="nav-link"
                                 activeClassName="active"
                                 to="/catalog"
@@ -63,6 +69,7 @@ export const Application: FC = () => {
                                 Catalog
                             </NavLink>
                             <NavLink
+                                data-testid="delivery-link"
                                 className="nav-link"
                                 activeClassName="active"
                                 to="/delivery"
@@ -71,6 +78,7 @@ export const Application: FC = () => {
                                 Delivery
                             </NavLink>
                             <NavLink
+                                data-testid="contacts-link"
                                 className="nav-link"
                                 activeClassName="active"
                                 to="/contacts"
@@ -79,6 +87,7 @@ export const Application: FC = () => {
                                 Contacts
                             </NavLink>
                             <NavLink
+                                data-testid="cart-link"
                                 className="nav-link"
                                 activeClassName="active"
                                 to="/cart"

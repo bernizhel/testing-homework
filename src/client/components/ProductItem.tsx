@@ -20,9 +20,20 @@ export const ProductItem: React.FC<ProductItemProps> = ({ product }) => {
         >
             <Image className="card-img-top" />
             <div className="card-body">
-                <h5 className={bem('Name', ['card-title'])}>{product.name}</h5>
-                <p className={bem('Price', ['card-text'])}>${product.price}</p>
+                <h5
+                    data-testid="product-name"
+                    className={bem('Name', ['card-title'])}
+                >
+                    {product.name}
+                </h5>
+                <p
+                    data-testid="product-price"
+                    className={bem('Price', ['card-text'])}
+                >
+                    ${product.price}
+                </p>
                 <Link
+                    data-testid="link-details"
                     to={`/catalog/${product.id}`}
                     className={bem('DetailsLink', ['card-link'])}
                 >
