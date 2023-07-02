@@ -90,9 +90,11 @@ function getBrowserOptions({ height, width, isMobile }) {
             resetCursor: true,
             calibrate: true,
             compositeImage: false,
-            screenshotDelay: 100,
+            screenshotDelay: 500,
             screenshotsDir: 'hermione/screens',
             screenshotMode: 'fullpage',
+            takeScreenshotOnFailsMode: 'fullpage',
+            takeScreenshotOnFailsTimeout: DEFAULT_TIMEOUT,
             assertViewOpts: {
                 allowViewportOverflow: true,
                 captureElementFromTop: true,
