@@ -1,6 +1,6 @@
 const Catalog = require('../pageobjects/Catalog.js');
 
-describe('Тесты', async function () {
+describe('microsoft', async function () {
     it('Тест на адаптивность главной страницы под ширину экрана', async function ({
         browser,
     }) {
@@ -135,19 +135,18 @@ describe('Тесты', async function () {
         const puppeteer = await browser.getPuppeteer();
         const [page] = await puppeteer.pages();
 
-        await page.goto('http://localhost:3000/hw/store/cart');
-        await page.evaluate(() => {
-            localStorage.setItem(
-                'example-store-cart',
-                JSON.stringify({ 0: { name: 'a', price: 1, count: 2 } })
-            );
+        await page.goto('http://localhost:3000/hw/store/catalog/0');
+        await page.waitForSelector('[data-testid=button-add-to-cart]', {
+            timeout: 1000,
         });
+        await page.click('[data-testid=button-add-to-cart]');
+
+        await page.click('[data-testid=cart-link]');
         await page.goto('http://localhost:3000/hw/store/cart');
-        await page.goto('http://localhost:3000/hw/store/cart');
-        await browser.assertView('plain', '.Application');
-        await page.evaluate(() => {
-            localStorage.clear();
-        });
+
+        await page.click('[data-testid=button-clear-cart]');
+
+        await browser.assertView('plain', '.navbar');
     });
 
     it('Тест, что в детализированной карточке товара корректно присутствует информация о товаре', async function ({
@@ -226,25 +225,4 @@ describe('Тесты', async function () {
         expect(name).toBeDefined();
         expect(await name.getText()).not.toEqual('');
     });
-
-    // it('Тест, что форма корректно отправляет данные и выдает корректный ответ2', async function({browser}) {
-    //     const puppeteer = await browser.getPuppeteer();
-    //     const [page] = await puppeteer.pages();
-
-    //     await page.goto('http://localhost:3000/hw/store/catalog/0');
-    //     await page.waitForSelector('[data-testid=button-add-to-cart]', {timeout: 1000});
-    //     await page.click('[data-testid=button-add-to-cart]');
-
-    //     await page.goto('http://localhost:3000/hw/store/cart');
-    //     await page.focus('[data-testid=name-input]');
-    //     await page.keyboard.type("Name");
-    //     await page.focus('[data-testid=phone-input]');
-    //     await page.keyboard.type("79122223344");
-    //     await page.focus('[data-testid=address-input]');
-    //     await page.keyboard.type("Address");
-
-    //     await page.click('[data-testid=checkout-button]');
-
-    //     await browser.assertView('plain', '.Application');
-    // });
 });
