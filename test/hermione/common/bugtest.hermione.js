@@ -1,5 +1,5 @@
-const { assert, expect, screen } = require('chai');
-const { MockData } = require('../mock');
+const { assert } = require('chai');
+const { MockData } = require('../../mock');
 
 describe('Тесты на корзину с моками', async () => {
     it('Кнопка [добавить в корзину] должна быть нужного размера', async ({

@@ -1,4 +1,4 @@
-const Catalog = require('./pageobjects/Catalog.js');
+const Catalog = require('../pageobjects/Catalog.js');
 
 describe('microsoft', async function () {
     it('Тест на адаптивность главной страницы под ширину экрана', async function ({
