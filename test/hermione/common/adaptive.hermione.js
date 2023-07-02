@@ -1,15 +1,22 @@
-const PageObject = require('../PageObject.js');
+const PageObject = require('../pageobjects/PageObject.js');
+const Catalog = require('../pageobjects/Catalog.js');
 
 describe('Верстка должна адаптироваться под ширину экрана', async () => {
     it('Главная страница', async ({ browser }) => {
         const pageObject = new PageObject(browser, hermione.ctx);
-        await pageObject.goTo('/');
+        await pageObject.goTo();
         await pageObject.takeScreenshot();
     });
 
     it('Каталог', async ({ browser }) => {
-        const pageObject = new PageObject(browser, hermione.ctx);
-        await pageObject.goTo('/catalog');
+        const pageObject = new Catalog(browser, hermione.ctx);
+        await pageObject.goTo();
+        await pageObject.takeScreenshot();
+    });
+
+    it('Продукт', async ({ browser }) => {
+        const pageObject = new Catalog(browser, hermione.ctx);
+        await pageObject.goTo('/0');
         await pageObject.takeScreenshot();
     });
 
