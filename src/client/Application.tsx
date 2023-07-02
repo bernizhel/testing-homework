@@ -19,10 +19,7 @@ export const Application: FC = () => {
     const [collapsed, setCollapsed] = useState(true);
     const cart = useSelector((s: ApplicationState) => s.cart);
 
-    const toggle = useCallback(
-        () => setCollapsed(!collapsed),
-        [setCollapsed, collapsed]
-    );
+    const toggle = useCallback(() => setCollapsed(!collapsed), [setCollapsed, collapsed]);
     const hide = useCallback(() => {
         if (process.env.BUG_ID === '4') {
             setCollapsed(false);
@@ -33,82 +30,35 @@ export const Application: FC = () => {
 
     const count = Object.keys(cart).length;
     const cartLabel = count ? `Cart (${count})` : 'Cart';
-    const navbarClass = collapsed
-        ? 'collapse navbar-collapse'
-        : 'navbar-collapse';
+    const navbarClass = collapsed ? 'collapse navbar-collapse' : 'navbar-collapse';
 
-    return (
-        <div className={bem()}>
-            <Helmet titleTemplate="%s — Example store" />
-            <nav className="navbar navbar-expand-sm navbar-light bg-light">
-                <div className="container">
-                    <Link
-                        data-testid="main-page-link"
-                        className={bem('Brand', ['navbar-brand'])}
-                        to="/"
-                    >
-                        Example store
-                    </Link>
-                    <button
-                        data-testid="burger-button"
-                        className={bem('Toggler', ['navbar-toggler'])}
-                        aria-label="Toggle navigation"
-                        onClick={toggle}
-                    >
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                    <div className={bem('Menu', [navbarClass])}>
-                        <div className="navbar-nav">
-                            <NavLink
-                                data-testid="catalog-link"
-                                className="nav-link"
-                                activeClassName="active"
-                                to="/catalog"
-                                onClick={hide}
-                            >
-                                Catalog
-                            </NavLink>
-                            <NavLink
-                                data-testid="delivery-link"
-                                className="nav-link"
-                                activeClassName="active"
-                                to="/delivery"
-                                onClick={hide}
-                            >
-                                Delivery
-                            </NavLink>
-                            <NavLink
-                                data-testid="contacts-link"
-                                className="nav-link"
-                                activeClassName="active"
-                                to="/contacts"
-                                onClick={hide}
-                            >
-                                Contacts
-                            </NavLink>
-                            <NavLink
-                                data-testid="cart-link"
-                                className="nav-link"
-                                activeClassName="active"
-                                to="/cart"
-                                onClick={hide}
-                            >
-                                {cartLabel}
-                            </NavLink>
-                        </div>
+    return <div className={bem()}>
+        <Helmet titleTemplate="%s — Example store" />
+        <nav className="navbar navbar-expand-sm navbar-light bg-light">
+            <div className="container">
+                <Link data-testid="main-page-link" className={bem('Brand', ['navbar-brand'])} to="/">Example store</Link>
+                <button data-testid="burger-button" className={bem('Toggler', ['navbar-toggler'])} aria-label="Toggle navigation" onClick={toggle}>
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className={bem('Menu', [navbarClass])}>
+                    <div className="navbar-nav">
+                        <NavLink data-testid="catalog-link" className="nav-link" activeClassName="active" to="/catalog" onClick={hide}>Catalog</NavLink>
+                        <NavLink data-testid="delivery-link" className="nav-link" activeClassName="active" to="/delivery" onClick={hide}>Delivery</NavLink>
+                        <NavLink data-testid="contacts-link" className="nav-link" activeClassName="active" to="/contacts" onClick={hide}>Contacts</NavLink>
+                        <NavLink data-testid="cart-link" className="nav-link" activeClassName="active" to="/cart" onClick={hide}>{cartLabel}</NavLink>
                     </div>
                 </div>
-            </nav>
-            <div className="container pt-4">
-                <Switch>
-                    <Route path="/" exact component={Home} />
-                    <Route path="/catalog" exact component={Catalog} />
-                    <Route path="/catalog/:id" component={Product} />
-                    <Route path="/delivery" component={Delivery} />
-                    <Route path="/contacts" component={Contacts} />
-                    <Route path="/cart" component={Cart} />
-                </Switch>
             </div>
+        </nav>
+        <div className="container pt-4">
+            <Switch>
+                <Route path="/" exact component={Home} />
+                <Route path="/catalog" exact component={Catalog} />
+                <Route path="/catalog/:id" component={Product} />
+                <Route path="/delivery" component={Delivery} />
+                <Route path="/contacts" component={Contacts} />
+                <Route path="/cart" component={Cart} />
+            </Switch>
         </div>
-    );
+    </div>;
 };

@@ -13,16 +13,16 @@ export const Catalog: React.FC = () => {
     const products = useSelector((s: ApplicationState) => s.products);
 
     useEffect(() => {
-        dispatch(productsLoad());
+        dispatch(productsLoad())
     }, []);
 
-    const items: React.ReactNode = products
-        ? products.map((p) => (
-              <div key={p.id} className="col-12 col-sm-6 col-md-4 col-lg-3">
-                  <ProductItem product={p} />
-              </div>
-          ))
-        : 'LOADING';
+    const items: React.ReactNode = products ?
+        products.map(p => (
+            <div key={p.id} data-testid={p.id} className="col-12 col-sm-6 col-md-4 col-lg-3">
+                <ProductItem product={p} />
+            </div>
+        )) :
+        'LOADING';
 
     return (
         <div data-testid="catalog" className={bem()}>
@@ -32,7 +32,9 @@ export const Catalog: React.FC = () => {
                     <h1>Catalog</h1>
                 </div>
             </div>
-            <div className="row">{items}</div>
+            <div className="row">  
+                {items}
+            </div>
         </div>
     );
-};
+}

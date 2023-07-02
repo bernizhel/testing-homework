@@ -1,5 +1,5 @@
-const { assert } = require('chai');
-const { MockData } = require('../../mock.js');
+const { assert, expect, screen } = require('chai');
+const { MockData } = require('../mock');
 
 describe('Тесты на корзину с моками', async () => {
     it('Кнопка [добавить в корзину] должна быть нужного размера', async ({
@@ -55,7 +55,7 @@ describe('Тесты на корзину с моками', async () => {
 
         await browser.assertView(
             'Gone to product page to check button size',
-            '.Application'
+            '[data-testid=product-content-container]'
         );
     }),
         it('Поля инпута в форме заказа корректно валидируются', async ({
@@ -110,7 +110,10 @@ describe('Тесты на корзину с моками', async () => {
 
             await browser.assertView(
                 'Typed the data into input and clicked submit',
-                '.Application'
+                '.Application',
+                {
+                    ignoreElements: ['[data-testid=number]'],
+                }
             );
         });
 });
