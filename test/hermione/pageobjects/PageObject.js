@@ -1,13 +1,9 @@
+const { MockData } = require('../../mock');
+
 module.exports = class PageObject {
     constructor(browser, context) {
         this.browser = browser;
         this.context = context;
-    }
-
-    async initializePuppeteer() {
-        this.puppeteer = await this.browser.getPuppeteer();
-        const pages = await this.puppeteer.pages();
-        this.page = pages[0];
     }
 
     async goTo(
@@ -15,7 +11,8 @@ module.exports = class PageObject {
         selectorToWait = this.context.defaultSelector,
         timeout = this.context.defaultTimeout
     ) {
-        await this.initializePuppeteer();
+        await this.init();
+        await this.mock();
         await this.goToUrl(urlToGo);
         // await page.waitForSelector(selectorToWait, { timeout });
 
@@ -29,6 +26,36 @@ module.exports = class PageObject {
         });
 
         return this.page;
+    }
+
+    async init() {
+        this.puppeteer = await this.browser.getPuppeteer();
+        const pages = await this.puppeteer.pages();
+        this.page = pages[0];
+    }
+
+    async mock() {
+        const mocker = new MockData();
+
+        const productsMock = await this.browser.mock(
+            '**' + '/api/products' + '**',
+            { method: 'get' }
+        );
+        productsMock.respond(async (response) => {
+            return (await mocker.getProducts()).data;
+        });
+
+        const productMock = await this.browser.mock(
+            '**' + '/api/products/' + '**',
+            { method: 'get' }
+        );
+        productMock.respond(async (response) => {
+            const id = response.url
+                .split('/')
+                .filter((slug) => Boolean(slug))
+                .at(-1);
+            return (await mocker.getProductById(+id)).data;
+        });
     }
 
     async goToUrl(urlToGo) {
