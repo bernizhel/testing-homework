@@ -15,7 +15,6 @@ module.exports = class PageObject {
         await this.init();
         if (this.isMocked) await this.mock();
         await this.goToUrl(urlToGo);
-        // await page.waitForSelector(selectorToWait, { timeout });
 
         const element = await this.browser.$(selectorToWait);
         await this.browser.waitUntil(() => element.isExisting(), { timeout });
