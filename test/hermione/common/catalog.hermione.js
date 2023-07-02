@@ -1,6 +1,19 @@
 const Catalog = require('../pageobjects/Catalog.js');
 
 describe('Каталог', async () => {
+    describe('В каталоге должны корректно отображаться названия продуктов', () => {
+        it('Тест', async ({ browser }) => {
+            const catalog = new Catalog(browser, hermione.ctx, false);
+            await catalog.goTo();
+            const name = await browser.$(
+                '[data-testid="0"] [data-testid="product-name"]'
+            );
+
+            expect(name).toBeDefined();
+            expect(await name.getText()).not.toEqual('');
+        });
+    });
+
     describe('Для каждого товара в каталоге отображается название, цена и ссылка на страницу с подробной информацией о товаре', () => {
         it('Продукт 111', async ({ browser }) => {
             const catalog = new Catalog(browser, hermione.ctx);
