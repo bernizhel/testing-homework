@@ -1,9 +1,10 @@
 const { MockData } = require('../../mock');
 
 module.exports = class PageObject {
-    constructor(browser, context) {
+    constructor(browser, context, isMocked = true) {
         this.browser = browser;
         this.context = context;
+        this.isMocked = isMocked;
     }
 
     async goTo(
@@ -12,7 +13,7 @@ module.exports = class PageObject {
         timeout = this.context.defaultTimeout
     ) {
         await this.init();
-        await this.mock();
+        if (this.isMocked) await this.mock();
         await this.goToUrl(urlToGo);
         // await page.waitForSelector(selectorToWait, { timeout });
 
