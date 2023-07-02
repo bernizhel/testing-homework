@@ -5,9 +5,7 @@ describe('Каталог', async () => {
         it('Тест', async ({ browser }) => {
             const catalog = new Catalog(browser, hermione.ctx, false);
             await catalog.goTo();
-            const name = await browser.$(
-                '[data-testid="0"] [data-testid="product-name"]'
-            );
+            const name = await browser.$('[data-testid="product-name-0"]');
 
             expect(name).toBeDefined();
             expect(await name.getText()).not.toEqual('');
@@ -22,13 +20,15 @@ describe('Каталог', async () => {
             const product = await catalog.getProduct(111);
 
             expect(product).toBeDefined();
-            await expect(product.$('[data-testid=product-name]')).toHaveText(
-                'Good 1'
+            await expect(
+                product.$('[data-testid="product-name-111"]')
+            ).toHaveText('Good 1');
+            await expect(
+                product.$('[data-testid="product-price-111"]')
+            ).toHaveText('$999');
+            const linkDetails = await product.$(
+                '[data-testid="link-details-111"]'
             );
-            await expect(product.$('[data-testid=product-price]')).toHaveText(
-                '$999'
-            );
-            const linkDetails = await product.$('[data-testid=link-details]');
             await expect(linkDetails).toHaveText('Details');
             await expect(linkDetails).toHaveHrefContaining('/catalog/111');
 
@@ -42,13 +42,15 @@ describe('Каталог', async () => {
             const product = await catalog.getProduct(222);
 
             expect(product).toBeDefined();
-            await expect(product.$('[data-testid=product-name]')).toHaveText(
-                'Good 2'
+            await expect(
+                product.$('[data-testid="product-name-222"]')
+            ).toHaveText('Good 2');
+            await expect(
+                product.$('[data-testid="product-price-222"]')
+            ).toHaveText('$888');
+            const linkDetails = await product.$(
+                '[data-testid="link-details-222"]'
             );
-            await expect(product.$('[data-testid=product-price]')).toHaveText(
-                '$888'
-            );
-            const linkDetails = await product.$('[data-testid=link-details]');
             await expect(linkDetails).toHaveText('Details');
             await expect(linkDetails).toHaveHrefContaining('/catalog/222');
 
@@ -62,13 +64,15 @@ describe('Каталог', async () => {
             const product = await catalog.getProduct(333);
 
             expect(product).toBeDefined();
-            await expect(product.$('[data-testid=product-name]')).toHaveText(
-                'Good 3'
+            await expect(
+                product.$('[data-testid="product-name-333"]')
+            ).toHaveText('Good 3');
+            await expect(
+                product.$('[data-testid="product-price-333"]')
+            ).toHaveText('$777');
+            const linkDetails = await product.$(
+                '[data-testid="link-details-333"]'
             );
-            await expect(product.$('[data-testid=product-price]')).toHaveText(
-                '$777'
-            );
-            const linkDetails = await product.$('[data-testid=link-details]');
             await expect(linkDetails).toHaveText('Details');
             await expect(linkDetails).toHaveHrefContaining('/catalog/333');
 

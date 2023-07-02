@@ -1,11 +1,12 @@
-import { initStore } from '../../src/client/store';
+import { initStore } from '../../../src/client/store';
 import { createMemoryHistory } from 'history';
-import { MockCartApi, MockData } from '../mock';
+import { MockCartApi, MockData } from '../../mock';
 import { render } from '@testing-library/react';
 
+import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { Application } from './Application';
+import { Application } from '../../../src/client/Application';
 
 const BASENAME = '/hw/store';
 
