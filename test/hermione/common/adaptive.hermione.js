@@ -14,10 +14,15 @@ describe('Верстка должна адаптироваться под шир
         await pageObject.takeScreenshot();
     });
 
-    it('Продукт', async ({ browser }) => {
-        const pageObject = new Catalog(browser, hermione.ctx);
-        await pageObject.goTo('/0');
-        await pageObject.takeScreenshot();
+    it('Продукт (111)', async ({ browser }) => {
+        const catalog = new Catalog(browser, hermione.ctx);
+        const page = await catalog.goTo();
+        const linkDetails = await browser.$(
+            '[data-testid="111"] [data-testid=link-details]'
+        );
+        await linkDetails.click();
+        await page.waitForSelector('[data-testid=button-add-to-cart]');
+        await catalog.takeScreenshot();
     });
 
     it('Доставка', async ({ browser }) => {
