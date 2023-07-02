@@ -1,4 +1,4 @@
-describe('microsoft', async function () {
+describe('Тесты', async function () {
     it('Тест на адаптивность главной страницы под ширину экрана', async function ({
         browser,
     }) {

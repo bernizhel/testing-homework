@@ -37,9 +37,10 @@ module.exports = {
     },
     system: {
         fileExtensions: ['.js'],
-        parallelLimit: os.cpus().length,
         // use any number of workers your machine allows
-        workers: 1,
+        parallelLimit: os.cpus().length,
+        workers: os.cpus().length,
+        testsPerWorker: 1,
         ctx: {
             sutUri: SUT_URI,
             defaultTimeout: DEFAULT_TIMEOUT,
